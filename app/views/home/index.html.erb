@@ -1,16 +1,16 @@
 <h1>Zombie App</h1>
-
-
-
 <%if current_user%>
 
 <%= current_user.name%>
 <div style="width:400px;height:auto">
 <%= image_tag(current_user.image,style:'width:100%')%>
 </div>
-<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+<%= link_to 'Sign out', destroy_user_session_path, method: :delete ,class:"btn btn-outline-danger"%>
 
 <% else %>
-<%= link_to 'Log in', new_user_session_path %>
-<%= link_to 'Sign up', new_user_registration_path%>
+<%= link_to 'Log in', new_user_session_path ,class:"btn btn-outline-success"%>
+<%= link_to 'Sign up', new_user_registration_path ,class:"btn btn-outline-secondary"%>
 <% end %>
+
+
+
