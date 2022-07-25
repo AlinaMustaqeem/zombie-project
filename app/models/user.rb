@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one :inventory
+
   validates :name, format: { with: /\A[a-zA-Z]+\z/,message: 'Should contain letters Only' } , presence: true
 
   validates :age, inclusion: { in: 18..90, message: 'Should be 18 to 90'} , presence: true

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  water: 1
+  soup: 1
+  pouch: 1
+  Ak47: 1
+
+two:
+  water: 1
+  soup: 1
+  pouch: 1
+  Ak47: 1

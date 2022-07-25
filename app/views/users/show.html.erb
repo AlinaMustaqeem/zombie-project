@@ -1,0 +1,15 @@
+<p><h1><%=current_user.name%></h1>
+<br>
+<div style="width:400px;height:auto">
+<%= image_tag(current_user.image,style:'width:100%') %>
+</div>
+<br>
+<%=current_user.inventory.water%> Water <%=current_user.inventory.water * 10%>
+<br>
+<%=current_user.inventory.soup%> Soup <%=current_user.inventory.soup * 10%>
+<br>
+<%=current_user.inventory.pouch%> Pouch <%=current_user.inventory.pouch * 10%>
+<br>
+<%=current_user.inventory.Ak47%> AK47 <%=current_user.inventory.Ak47 * 10%>
+<br>
+</p>

@@ -1,0 +1,26 @@
+<h2>Register Inventory</h2>
+
+<%= form_with(model: [@inventory], local: true) do |f| %>
+  <%= f.label :water %>
+  <%= f.number_field :water %>
+
+  <br>
+  <br>
+
+  <%= f.label :soup %>
+  <%= f.number_field :soup %>
+
+  <br>
+  <br>
+
+  <%= f.label :pouch %>
+  <%= f.number_field :pouch %>
+
+  <br>
+  <br>
+  <%= f.label :Ak47 %>
+  <%= f.number_field :Ak47 %>
+  <br>
+  <br>
+  <%= f.submit %>
+<% end %>

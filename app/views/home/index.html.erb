@@ -3,7 +3,7 @@
 
 <%= current_user.name%>
 <div style="width:400px;height:auto">
-<%= image_tag(current_user.image,style:'width:100%')%>
+<%= image_tag(current_user.image,style:'width:100%') %>
 </div>
 <%= link_to 'Sign out', destroy_user_session_path, method: :delete ,class:"btn btn-outline-danger"%>
 
