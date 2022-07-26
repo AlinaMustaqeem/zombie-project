@@ -1,5 +1,6 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
+Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   # devise_scope :user do
   #   authenticated :user do
@@ -13,8 +14,11 @@ Rails.application.routes.draw do
   root 'users#index'
   resources :inventories
 
-  resources :users
+  resources :users do
+    collection do
+      get 'home'
+    end
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
 end

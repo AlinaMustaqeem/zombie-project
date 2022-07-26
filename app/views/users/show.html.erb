@@ -1,15 +1,41 @@
-<p><h1><%=current_user.name%></h1>
+<p><h1><%=@user.name%></h1>
 <br>
 <div style="width:400px;height:auto">
-<%= image_tag(current_user.image,style:'width:100%') %>
+<%= image_tag(@user.image,style:'width:100%') if @user.image.attached?%>
 </div>
 <br>
-<%=current_user.inventory.water%> Water <%=current_user.inventory.water * 10%>
-<br>
-<%=current_user.inventory.soup%> Soup <%=current_user.inventory.soup * 10%>
-<br>
-<%=current_user.inventory.pouch%> Pouch <%=current_user.inventory.pouch * 10%>
-<br>
-<%=current_user.inventory.Ak47%> AK47 <%=current_user.inventory.Ak47 * 10%>
-<br>
 </p>
+
+<table>
+  <tr>
+    <th>Qty</th>
+    <th>Item Name </th>
+    <th>Points</th>
+  </tr>
+   <tr>
+    <td><%=@user.inventory.water / 14%></td>
+    <td> Fiji Water</td>
+    <td><%=@user.inventory.water %></td>
+    </tr>
+    <tr><td><%=@user.inventory.soup / 12%> </td>
+    <td> Soup </td>
+    <td><%=@user.inventory.soup %></td>
+    </tr>
+   <tr>
+   <td><%=@user.inventory.pouch / 10%> </td>
+    <td> Pouch </td>
+    <td><%=@user.inventory.pouch %></td>
+    </tr>
+    <tr>
+    <td><%=@user.inventory.Ak47 / 8%> </td>
+    <td> AK47 </td>
+    <td><%=@user.inventory.Ak47 %></td>
+    </tr>
+   </table>
+    <%if current_user != @user%>
+    <%= link_to "Vote"%>
+    <% end %>
+    <br>
+
+   <%= link_to "people", home_users_path %>
+
