@@ -1,0 +1,23 @@
+<h1>Registered Users</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Image</th>
+    <th>Details</th>
+
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.age %></td>
+       <td><div style="width:50px;height:auto">
+       <%= image_tag(user.image,style:'width:100%') if user.image.attached?%>
+       </div>
+       </td>
+       <td><%= link_to "Show_details", user_path(user) %></td>
+    </tr>
+  <% end %>
+</table>

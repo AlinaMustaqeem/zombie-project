@@ -5,6 +5,11 @@ def show
 
 end
 
+def home
+  
+end
+
+
 def index
   if (!user_signed_in?)
     redirect_to new_user_registration_path
