@@ -37,8 +37,8 @@ class UsersController < ApplicationController
   end
 
   def home
-    @q = User.ransack(params[:q])
-    @users=@q.result(distinct: true)
+    @r = User.ransack(params[:q])
+    @users=@r.result(distinct: true)
   end
 
 private
