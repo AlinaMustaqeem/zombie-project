@@ -1,0 +1,27 @@
+<div class="container cont_b">
+<%if current_user.Not_Infected?%>
+  <h1>Update </h1>
+  <%= form_with(model: @user, local: true) do |form| %>
+    <p>
+      <%= form.label :longitude %><br>
+      <%= form.number_field :longitude %>
+    </p>
+    <p>
+      <%= form.label :latitude %><br>
+      <%= form.number_field :latitude %>
+    </p>
+    <p>
+      <%= form.label :image %><br>
+      <%= form.file_field :image %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+  <% else %>
+  <h1 class= "text-danger">Sorry You can not update</h1>
+  <% end %>
+
+  <%= link_to 'Back', user_path ,class:"btn btn-dark" %>
+  <br>
+  <br>

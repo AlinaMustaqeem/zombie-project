@@ -3,8 +3,15 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :vote_sent_comparison , foreign_key: :vote_sent_id, class_name: "Vote"
+  has_many :vote_reciever , through: :vote_sent_comparison
+
+  has_many :vote_reciever_comparison , foreign_key: :vote_reciever_id, class_name: "Vote"
+  has_many :vote_sent , through: :vote_reciever_comparison , dependent: :nullify
 
   has_one :inventory, dependent: :destroy
 
@@ -17,4 +24,9 @@ class User < ApplicationRecord
   validates :latitude, inclusion: { in: -90..90, message: 'Should be -90 to +90 (degrees)' }, presence: true
 
   has_one_attached :image
+
+  enum status: {
+    Not_Infected: 0,
+    Infected: 1
+  }
 end

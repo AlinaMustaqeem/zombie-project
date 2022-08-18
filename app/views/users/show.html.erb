@@ -1,41 +1,70 @@
-<p><h1><%=@user.name%></h1>
-<br>
-<div style="width:400px;height:auto">
-<%= image_tag(@user.image,style:'width:100%') if @user.image.attached?%>
-</div>
-<br>
-</p>
-
-<table>
-  <tr>
-    <th>Qty</th>
-    <th>Item Name </th>
-    <th>Points</th>
-  </tr>
-   <tr>
-    <td><%=@user.inventory.water / 14%></td>
-    <td> Fiji Water</td>
-    <td><%=@user.inventory.water %></td>
-    </tr>
-    <tr><td><%=@user.inventory.soup / 12%> </td>
-    <td> Soup </td>
-    <td><%=@user.inventory.soup %></td>
-    </tr>
-   <tr>
-   <td><%=@user.inventory.pouch / 10%> </td>
-    <td> Pouch </td>
-    <td><%=@user.inventory.pouch %></td>
-    </tr>
-    <tr>
-    <td><%=@user.inventory.Ak47 / 8%> </td>
-    <td> AK47 </td>
-    <td><%=@user.inventory.Ak47 %></td>
-    </tr>
-   </table>
-    <%if current_user != @user%>
-    <%= link_to "Vote"%>
+<div class = 'bg-img '>
+  <div class='cont_b container w-50'>
+    <p>
+      <h1><%=@user.name%></h1>
+      <br>
+      <div style="width:400px;height:auto">
+        <%= image_tag(@user.image,style:'width:100%') if @user.image.attached?%>
+      </div>
+      <br>
+    </p>
+    <p>
+      <h3>Location: </h3>
+      Lon: &nbsp;<%= @user.longitude%>,&nbsp;Lat:&nbsp;<%= @user.latitude%>
+      <%if @user==current_user%>&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= link_to 'Update', edit_user_path(@user), class:'btn btn-secondary'%>
+      <% end %>
+    </p>
+    <table class="table">
+      <tr class="table-secondary">
+        <th >Qty</th>
+        <th>Item Name </th>
+        <th>Points</th>
+      </tr>
+      <tr>
+        <td><%=@user.inventory.water / 14%></td>
+        <td> Fiji Water</td>
+        <td><%=@user.inventory.water %></td>
+      </tr>
+      <tr>
+        <td><%=@user.inventory.soup / 12%> </td>
+        <td> Soup </td>
+        <td><%=@user.inventory.soup %></td>
+      </tr>
+      <tr>
+        <td><%=@user.inventory.pouch / 10%> </td>
+        <td> Pouch </td>
+        <td><%=@user.inventory.pouch %></td>
+      </tr>
+      <tr>
+        <td><%=@user.inventory.Ak47 / 8%> </td>
+        <td> AK47 </td>
+        <td><%=@user.inventory.Ak47 %></td>
+      </tr>
+    </table>
+    <br>
+    <span>Total Votes: <%= vote_count(@user)%> </span>
+    <br>
+    <%if @user.Not_Infected?%>
+      Status:<span class= "text-success" ><%=@user.status%></span>
+      <br>
+    <% else %>
+      Status:<span class= "text-danger" >Infected</span>
+    <% end %>
+    <%if current_user.Not_Infected? && current_user!= @user && @user.Not_Infected?%>
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <%= link_to "Trade", home_users_path, class:"btn btn-dark" %>
+      </div>
+      <%if not_voted?(@user) %>
+        <br>
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <%= link_to "Vote",vote_user_path(@user) , method: :post, class:"btn btn-danger" %>
+        </div>
+      <%end%>
     <% end %>
     <br>
-
-   <%= link_to "people", home_users_path %>
-
+    <%= link_to "people", home_users_path ,class:"btn btn-secondary btn-lg"%>
+    <br>
+    <br>
+  </div>
+</div>

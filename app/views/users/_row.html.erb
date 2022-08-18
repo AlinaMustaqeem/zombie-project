@@ -1,0 +1,10 @@
+<td><%= user.name %></td>
+<td>lon:<%= user.latitude%>, lat:<%= user.latitude%></td>
+<td>
+  <div style="width:50px;height:auto">
+    <%= image_tag(user.image,style:'width:100%') if user.image.attached?%>
+  </div>
+</td>
+<td><%= user.inventory.total_qty %></td>
+<td><%= link_to "Detail", user_path(user), class:"btn btn-outline-success" %></td>
+<%# user.inventory.water / 14 + user.inventory.soup / 12 + user.inventory.pouch / 10 + user.inventory.Ak47/ 8 %>

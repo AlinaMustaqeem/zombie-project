@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
-class HomeController < ApplicationController
-  def new
-    @user = User.new
-  end
+# class HomeController < ApplicationController
+#   def new
+#     @user = User.new
+#   end
 
-  def index; end
-end
+#   def index;
+#   end
+# end
