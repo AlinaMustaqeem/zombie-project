@@ -2,26 +2,21 @@
 <%= render 'search_form'%>
 <table class='table table-bordered '>
   <tr class="table-danger">
-
     <th><%= sort_link(@r, :Name, default: :asc)%></th>
     <th>Location</th>
     <th>Image</th>
     <th>Total Qty</th>
     <th>Details</th>
-
   </tr>
   <% @users.each do |user| %>
-  <% if current_user!=user %>
-   <tr>
+    <% if current_user!=user %>
+      <tr>
         <%= render 'row', :user => user%>
-    </tr>
-
-  <% else %>
-  <tr class= 'table-success'>
-      <%= render 'row', :user => user%>
-    </tr>
-
-
+      </tr>
+    <% else %>
+      <tr class= 'table-success'>
+        <%= render 'row', :user => user%>
+      </tr>
+    <% end %>
   <% end %>
-<% end %>
 </table>

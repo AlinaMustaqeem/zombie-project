@@ -7,11 +7,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :vote_sent_comparison , foreign_key: :vote_sent_id, class_name: "Vote"
-  has_many :vote_reciever , through: :vote_sent_comparison
+  has_many :vote_sent_comparison, foreign_key: :vote_sent_id, class_name: 'Vote', dependent: :nullify
+  has_many :vote_reciever, through: :vote_sent_comparison, dependent: :nullify
 
-  has_many :vote_reciever_comparison , foreign_key: :vote_reciever_id, class_name: "Vote"
-  has_many :vote_sent , through: :vote_reciever_comparison , dependent: :nullify
+  has_many :vote_reciever_comparison, foreign_key: :vote_reciever_id, class_name: 'Vote', dependent: :nullify
+  has_many :vote_sent, through: :vote_reciever_comparison, dependent: :nullify
+
+  has_many :sending_user_comparison, foreign_key: :sending_user_id, class_name: 'Trade', dependent: :nullify
+  has_many :recieving_user, through: :sending_user_comparison, dependent: :nullify
+
+  has_many :recieving_user_comparison, foreign_key: :recieving_user_id, class_name: 'Trade', dependent: :nullify
+  has_many :sending_user, through: :recieving_user_comparison, dependent: :nullify
 
   has_one :inventory, dependent: :destroy
 
@@ -29,4 +35,10 @@ class User < ApplicationRecord
     Not_Infected: 0,
     Infected: 1
   }
+
+  enum user_type: {
+    user: 0,
+    admin: 1
+  }
+
 end

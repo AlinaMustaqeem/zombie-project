@@ -5,6 +5,8 @@
     <%= image_tag(user.image,style:'width:100%') if user.image.attached?%>
   </div>
 </td>
+<%if current_user.user?%>
 <td><%= user.inventory.total_qty %></td>
+<% end %>
 <td><%= link_to "Detail", user_path(user), class:"btn btn-outline-success" %></td>
 

@@ -45,15 +45,10 @@
     <br>
     <span>Total Votes: <%= vote_count(@user)%> </span>
     <br>
-    <%if @user.Not_Infected?%>
-      Status:<span class= "text-success" ><%=@user.status%></span>
-      <br>
-    <% else %>
-      Status:<span class= "text-danger" >Infected</span>
-    <% end %>
+    Status: <span class= "text-<%= @user.Infected? ? 'danger' : 'success' %>" ><%= @user.status %> </span>
     <%if current_user.Not_Infected? && current_user!= @user && @user.Not_Infected?%>
       <div class="d-grid gap-2 col-6 mx-auto">
-        <%= link_to "Trade", home_users_path, class:"btn btn-dark" %>
+        <%= link_to "Trade", trade_request_user_path(@user), method: :post, class:"btn btn-dark" %>
       </div>
       <%if not_voted?(@user) %>
         <br>
@@ -63,7 +58,8 @@
       <%end%>
     <% end %>
     <br>
-    <%= link_to "people", home_users_path ,class:"btn btn-secondary btn-lg"%>
+    <%= link_to "Requests",requests_users_path, class:"btn btn-danger" %>
+    <%= link_to "people", home_users_path ,class:"btn btn-secondary btn-lg" %>
     <br>
     <br>
   </div>

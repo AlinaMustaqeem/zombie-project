@@ -1,0 +1,13 @@
+<div class= "jumbotron shadow">
+Hey <%= current_user.name %>!!
+<br>
+<h1>Friend Requests</h1>
+<% current_user.sending_user.each do |user|%>
+  <%= user.name %>
+  <%= link_to 'accept',class:"btn-info btn-sm shadow"%>
+  <%= link_to 'reject',class:"btn-warning btn-sm shadow"%>
+<%end%>
+<br>
+<div>
+<br />
+<%= link_to 'Back',class:"btn btn-primary shadow"%>

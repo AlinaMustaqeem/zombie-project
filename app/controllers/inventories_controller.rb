@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class InventoriesController < ApplicationController
-
   def index; end
 
   def new
@@ -10,11 +9,11 @@ class InventoriesController < ApplicationController
 
   def create
     @inventory = Inventory.create(inventory_params)
-    @inventory.total_qty = @inventory.water / 14 + @inventory.soup / 12 + @inventory.pouch / 10 + @inventory.Ak47/ 8
+    @inventory.total_qty = @inventory.water / 14 + @inventory.soup / 12 + @inventory.pouch / 10 + @inventory.Ak47 / 8
     if @inventory.save
       redirect_to user_path(current_user.id), notice: 'saved succesfuly'
     else
-      render 'new', alert: "Please Enter Inventory"
+      render 'new', alert: 'Please Enter Inventory'
     end
   end
 
@@ -23,6 +22,4 @@ class InventoriesController < ApplicationController
   def inventory_params
     params.require(:inventory).permit(:water, :soup, :pouch, :Ak47, :total_qty).merge(user_id: current_user.id)
   end
-
-
 end

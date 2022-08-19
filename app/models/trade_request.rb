@@ -1,0 +1,2 @@
+class TradeRequest < ApplicationRecord
+end

@@ -1,0 +1,23 @@
+<h1 class= 'text-center'>Report</h1>
+<br>
+<b>
+  <table class="table">
+    <tr class="table-secondary">
+      <th>Non Infected pecentage</th>
+      <th >Infected Percentage</th>
+      <th>Average Water</th>
+      <th>Average Soup</th>
+      <th>Average Pouch</th>
+      <th>Average AK47</th>
+    </tr>
+    <tr>
+      <td> <%=((infected_count.to_f/total_users.to_f)*100).to_i%>% </td>
+      <td><%= ((not_infected_count.to_f/total_users.to_f)*100).to_i%>% </td>
+      <td> <%=average_water%></td>
+      <td> <%=average_soup%></td>
+      <td> <%=average_pouch%></td>
+      <td> <%=average_Ak47%></td>
+
+    </tr>
+  </table>
+</table>
