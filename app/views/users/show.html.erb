@@ -3,8 +3,8 @@
     <p>
       <h1><%=@user.name%></h1>
       <br>
-      <div style="width:400px;height:auto">
-        <%= image_tag(@user.image,style:'width:100%') if @user.image.attached?%>
+      <div class='msm-img'>
+        <%= image_tag(@user.image,class:'w') if @user.image.attached?%>
       </div>
       <br>
     </p>
@@ -13,42 +13,17 @@
       Lon: &nbsp;<%= @user.longitude%>,&nbsp;Lat:&nbsp;<%= @user.latitude%>
       <%if @user==current_user%>&nbsp;&nbsp;&nbsp;&nbsp;
         <%= link_to 'Update', edit_user_path(@user), class:'btn btn-secondary'%>
+        <%= link_to "All Requests",requests_users_path, class:"btn btn-danger" %>
       <% end %>
     </p>
-    <table class="table">
-      <tr class="table-secondary">
-        <th >Qty</th>
-        <th>Item Name </th>
-        <th>Points</th>
-      </tr>
-      <tr>
-        <td><%=@user.inventory.water / 14%></td>
-        <td> Fiji Water</td>
-        <td><%=@user.inventory.water %></td>
-      </tr>
-      <tr>
-        <td><%=@user.inventory.soup / 12%> </td>
-        <td> Soup </td>
-        <td><%=@user.inventory.soup %></td>
-      </tr>
-      <tr>
-        <td><%=@user.inventory.pouch / 10%> </td>
-        <td> Pouch </td>
-        <td><%=@user.inventory.pouch %></td>
-      </tr>
-      <tr>
-        <td><%=@user.inventory.Ak47 / 8%> </td>
-        <td> AK47 </td>
-        <td><%=@user.inventory.Ak47 %></td>
-      </tr>
-    </table>
+    <%=render 'inventoryTable', :user => @user%>
     <br>
     <span>Total Votes: <%= vote_count(@user)%> </span>
     <br>
     Status: <span class= "text-<%= @user.Infected? ? 'danger' : 'success' %>" ><%= @user.status %> </span>
     <%if current_user.Not_Infected? && current_user!= @user && @user.Not_Infected?%>
       <div class="d-grid gap-2 col-6 mx-auto">
-        <%= link_to "Trade", trade_request_user_path(@user), method: :post, class:"btn btn-dark" %>
+        <%= link_to "Trade", tradePage_trade_path(@user), method: :post,class:"btn btn-dark" %>
       </div>
       <%if not_voted?(@user) %>
         <br>
@@ -58,7 +33,6 @@
       <%end%>
     <% end %>
     <br>
-    <%= link_to "Requests",requests_users_path, class:"btn btn-danger" %>
     <%= link_to "people", home_users_path ,class:"btn btn-secondary btn-lg" %>
     <br>
     <br>

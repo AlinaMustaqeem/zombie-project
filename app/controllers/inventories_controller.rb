@@ -17,6 +17,13 @@ class InventoriesController < ApplicationController
     end
   end
 
+  # def accept
+  #   @user = User.find(params[:id])
+  #   @a = Trade.where(sending_user_id: @user.id, recieving_user_id:current_user.id)
+  #   byebug
+
+  # end
+
   private
 
   def inventory_params

@@ -12,7 +12,21 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :inventories
+  resources :inventories do
+    member do
+      post 'accept'
+    end
+  end
+
+
+  resources :trades do
+    member do
+      post 'tradePage'
+      post 'trading_request'
+      post 'accept_request'
+
+    end
+  end
 
   resources :users do
     collection do
@@ -22,7 +36,10 @@ Rails.application.routes.draw do
     end
     member do
       post 'vote'
-      post 'trade_request'
+
+      # get 'tradePage'
+
     end
+
   end
 end

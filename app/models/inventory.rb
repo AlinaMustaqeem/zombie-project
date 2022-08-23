@@ -8,6 +8,6 @@ class Inventory < ApplicationRecord
     self.water = water.to_i * 14
     self.soup = soup.to_i * 12
     self.pouch = pouch.to_i * 10
-    self.Ak47 = Ak47.to_i * 8
+    self.Ak47 = self.Ak47.to_i * 8
   end
 end

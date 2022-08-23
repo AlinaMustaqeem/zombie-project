@@ -1,17 +1,7 @@
 # frozen_string_literal: true
+TradeRequest.destroy_all
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
-
-
-Trade.create(sending_user_id: 84, recieving_user_id: 83)
+Trade.destroy_all
 
 begin
   user = User.new
@@ -28,3 +18,7 @@ begin
 rescue ActiveRecord::RecordInvalid => invalid
   puts invalid.record.errors.full_messages
 end
+
+# TradeRequest.create(coming_request_id: 103, current_reciever_id: 83)
+
+# Trade.create(sending_user_id: 103, recieving_user_id: )

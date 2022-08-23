@@ -13,7 +13,7 @@ module UsersHelper
   end
 
   def not_infected_count
-    User.where(status:'Not_Infected').count
+    User.where(status:'Not_Infected').count-1
   end
 
   def infected_count
@@ -21,7 +21,7 @@ module UsersHelper
   end
 
   def total_users
-    User.all.count
+    User.all.count-1
   end
 
   def water_sum

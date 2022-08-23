@@ -1,0 +1,54 @@
+<%= form_with(url:tradePage_trade_path , local: true) do |f| %>
+
+  <div class = 'row'>
+    <div class = 'col'>
+      <%= f.label :waterc %>
+      <%= f.number_field :waterc %>
+    </div>
+    <div class = 'col'>
+      <%= f.label :watere %>
+      <%= f.number_field :watere %>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class = 'row'>
+    <div class = 'col'>
+      <%= f.label :soupc %>
+      <%= f.number_field :soupc %>
+    </div>
+    <div class = 'col'>
+      <%= f.label :soupe %>
+      <%= f.number_field :soupe %>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class = 'row'>
+    <div class = 'col'>
+      <%= f.label :pouchc %>
+      <%= f.number_field :pouchc %>
+    </div>
+    <div class = 'col'>
+      <%= f.label :pouche %>
+      <%= f.number_field :pouche %>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class = 'row'>
+    <div class = 'col'>
+      <%= f.label :ak47c %>
+      <%= f.number_field :ak47c %>
+    </div>
+    <div class = 'col'>
+      <%= f.label :ak47e %>
+      <%= f.number_field :ak47e %>
+    </div>
+  </div>
+  <br>
+  <br>
+  <%= f.submit 'Send Request' %>
+  <br>
+  <br>
+<% end %>

@@ -1,13 +1,23 @@
 <div class= "jumbotron shadow">
-Hey <%= current_user.name %>!!
-<br>
-<h1>Friend Requests</h1>
-<% current_user.sending_user.each do |user|%>
-  <%= user.name %>
-  <%= link_to 'accept',class:"btn-info btn-sm shadow"%>
-  <%= link_to 'reject',class:"btn-warning btn-sm shadow"%>
-<%end%>
-<br>
-<div>
-<br />
-<%= link_to 'Back',class:"btn btn-primary shadow"%>
+  <h1 class= 'text-center'>Trade Requests</h1>
+  <br>
+  <h1><%= current_user.name %>'s Profile</h1>
+  <br>
+  <table class="table">
+    <tr class="table-secondary">
+      <th >Person Name</th>
+      <th>Accept </th>
+      <th>Reject</th>
+    </tr>
+    <% current_user.sending_user.each do |user|%>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= link_to 'accept', accept_request_trade_path(user.id),method: :post, class:'btn btn-danger' %></td>
+        <td> <%= link_to 'reject',trade_path(user.id),method: :delete,class:'btn btn-danger' %></td>
+      </tr>
+    <%end%>
+  </table>
+  <br>
+  <div>
+  <br />
+   <%= link_to 'Back',user_path(current_user),class:"btn btn-primary shadow" %>
