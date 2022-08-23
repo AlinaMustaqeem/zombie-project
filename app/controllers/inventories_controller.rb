@@ -17,7 +17,6 @@ class InventoriesController < ApplicationController
     end
   end
 
-
   private
 
   def inventory_params

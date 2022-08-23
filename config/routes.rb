@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   devise_scope :user do
     authenticated :user do
-        root 'users#index' , as: :authenticated_root
+      root 'users#index', as: :authenticated_root
     end
 
     unauthenticated :user do
-      root 'devise/sessions#new' , as: :unauthenticated_root
+      root 'devise/sessions#new', as: :unauthenticated_root
     end
   end
 
@@ -18,13 +18,11 @@ Rails.application.routes.draw do
     end
   end
 
-
   resources :trades do
     member do
       post 'tradePage'
       post 'trading_request'
       post 'accept_request'
-
     end
   end
 
@@ -37,6 +35,5 @@ Rails.application.routes.draw do
     member do
       post 'vote'
     end
-
   end
 end

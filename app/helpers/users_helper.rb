@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module UsersHelper
   def vote_count(user)
     Vote.where(vote_reciever_id: user.id).count
@@ -13,46 +14,46 @@ module UsersHelper
   end
 
   def not_infected_count
-    User.where(status:'Not_Infected').count-1
+    User.where(status: 'Not_Infected').count - 1
   end
 
   def infected_count
-    User.where(status:'Infected').count
+    User.where(status: 'Infected').count
   end
 
   def total_users
-    User.all.count-1
+    User.all.count - 1
   end
 
   def water_sum
-    (Inventory.pluck(:water).inject (0) { |sum, i| sum + i})/14
+    (Inventory.pluck(:water).inject(0) { |sum, i| sum + i }) / 14
   end
 
   def soup_sum
-    (Inventory.pluck(:soup).inject (0) { |sum, i| sum + i})/12
+    (Inventory.pluck(:soup).inject(0) { |sum, i| sum + i }) / 12
   end
 
   def pouch_sum
-    (Inventory.pluck(:pouch).inject (0) { |sum, i| sum + i})/10
+    (Inventory.pluck(:pouch).inject(0) { |sum, i| sum + i }) / 10
   end
 
   def ak47_sum
-    (Inventory.pluck(:Ak47).inject (0) { |sum, i| sum + i})/8
+    (Inventory.pluck(:Ak47).inject(0) { |sum, i| sum + i }) / 8
   end
 
   def average_water
-    water_sum/total_users
+    water_sum / total_users
   end
 
   def average_soup
-    soup_sum/total_users
+    soup_sum / total_users
   end
 
   def average_pouch
-    pouch_sum/total_users
-  end
-  def average_Ak47
-    ak47_sum/total_users
+    pouch_sum / total_users
   end
 
+  def average_Ak47
+    ak47_sum / total_users
+  end
 end

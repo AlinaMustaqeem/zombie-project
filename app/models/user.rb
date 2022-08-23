@@ -40,5 +40,4 @@ class User < ApplicationRecord
     user: 0,
     admin: 1
   }
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddChangesToTrade < ActiveRecord::Migration[5.2]
   def change
     add_column :trades, :waterc, :integer
@@ -8,6 +10,6 @@ class AddChangesToTrade < ActiveRecord::Migration[5.2]
     add_column :trades, :soupe, :integer
     add_column :trades, :ak47c, :integer
     add_column :trades, :ak47e, :integer
-    add_column :trades, :request_status, :integer , default: 0
+    add_column :trades, :request_status, :integer, default: 0
   end
 end

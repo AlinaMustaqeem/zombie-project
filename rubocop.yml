@@ -1,0 +1,30 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+AllCops:
+  # Exclude auto-generated files by Rails
+  TargetRubyVersion: 2.7
+  TargetRailsVersion: 5.2
+  Exclude:
+    - 'db/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/bundle/**/*'
+    - 'bin/**/*'
+    -  config/**/*
+Layout/LineLength:
+  Max: 120
+Metrics/MethodLength:
+  Max: 23
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+    - spec/**/*
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*
+Style/Documentation:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Rails/InverseOf:
+  Enabled: false
