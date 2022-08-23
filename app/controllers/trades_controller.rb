@@ -1,10 +1,5 @@
 class TradesController < ApplicationController
-  def new
-    # byebug
-    # @user = User.find(params[:user_id])
-    # @trade = Trade.new
-
-  end
+  def new;  end
 
  def tradePage
     @user = User.find(params[:id])
@@ -33,22 +28,7 @@ class TradesController < ApplicationController
     redirect_to user_path(@user.id)
   end
 
-  def create
-    # @trade = Trade.new(trade2_params)
-    # @user = User.find(params[:user_id])
-    # selected_point = params
-    # @sum = selected_point[:water].to_i*14+selected_point[:soup].to_i*12+selected_point[:pouch].to_i*10+selected_point[:Ak47].to_i*8
-    # @sume = selected_point[:watere].to_i*14+selected_point[:soupe].to_i*12+selected_point[:pouche].to_i*10+selected_point[:Ak47e].to_i*8
-    # byebug
-    # if (@sum == @sume)
-    #   byebug
-    #   @trade.pending!
-    #   byebug
-    #   redirect_to new_user_trade_path
-    # else
-    #   redirect_to new_user_trade_path
-    # end
-  end
+
 
   def index;
   end
@@ -63,9 +43,7 @@ class TradesController < ApplicationController
 
 
   private
-  def trade_params
-    params.permit!(:sending_user_id,:recieving_user_id,:waterc,:watere, :soupc,:soupe, :pouchc,:pouche, :ak47e,:ak47c, :user_id)
-  end
+ 
   def trade2_params
     params.permit(:sending_user_id,:recieving_user_id,:waterc,:watere, :soupc,:soupe, :pouchc,:pouche, :ak47e,:ak47c)
   end

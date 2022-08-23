@@ -17,11 +17,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # def tradePage
-  #   selected_point = params
-  #   @sum = selected_point[:water].to_i*14+selected_point[:soup].to_i*12+selected_point[:pouch].to_i*10+selected_point[:Ak47].to_i*8
-  #   @sume = selected_point[:watere].to_i*14+selected_point[:soupe].to_i*12+selected_point[:pouche].to_i*10+selected_point[:Ak47e].to_i*8
-  # end
+
 
   def index
     if !user_signed_in?
@@ -37,10 +33,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # def trading_request
-  #     Trade.create(sending_user_id: current_user.id , recieving_user_id: @user.id)
-  #     redirect_to user_path(@user), notice: 'trade'
-  # end
 
 
   def vote

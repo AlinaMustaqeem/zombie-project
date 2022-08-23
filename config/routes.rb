@@ -36,9 +36,6 @@ Rails.application.routes.draw do
     end
     member do
       post 'vote'
-
-      # get 'tradePage'
-
     end
 
   end
