@@ -12,7 +12,6 @@ class TradeService
   end
 
   def exchnage_points
-    byebug
     water_soupe = @param[:watere].to_i * WATER_POINTS + @param[:soupe].to_i * SOUP_POINTS
     pouch_ake = + @param[:pouche].to_i * POUCH_POINTS + @param[:ak47e].to_i * AK47_POINTS
     return (water_soupe + pouch_ake)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TradesController < ApplicationController
-  before_action :set_user, only: %i[tradePage accept_request destroy]
+  before_action :set_user, only: %i[tradePage show accept_request destroy]
   before_action :set_trade, only: %i[accept_request destroy]
 
   def new; end
@@ -17,14 +17,15 @@ class TradesController < ApplicationController
 
   def accept_request
     AcceptInventory.new(@user.id, current_user.id, @trade).updating
+    @trade.accepted!
     redirect_to user_path(current_user.id), notice: 'Your Trade has been Done'
-    @trade.destroy
   end
 
   def index; end
+  def show; end
 
   def destroy
-    @trade.destroy
+    @trade.rejected!
     redirect_to user_path(current_user),notice: 'Rejected Request'
   end
 

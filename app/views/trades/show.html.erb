@@ -1,0 +1,18 @@
+<div class ='container cont_b'>
+  <table class="table ">
+    <tr class="table-secondary">
+      <th>User</th>
+      <th>Status </th>
+      <th>At </th>
+    </tr>
+    <% current_user.sending_user.each do |user|%>
+      <%user.sending_user_comparison.each do |trade|%>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= trade.request_status%></td>
+          <td><%= trade.created_at%></td>
+        </tr>
+      <% end %>
+    <%end%>
+  </table>
+</div>

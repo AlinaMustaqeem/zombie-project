@@ -5,6 +5,10 @@ module UsersHelper
     Vote.where(vote_reciever_id: user.id).count
   end
 
+  def pending?
+    Trade.find_by(recieving_user_id:current_user.id).request_status == 'pending'
+  end
+
   def not_effected?(user)
     ((current_user != user) && user.status == Not_Infected)
   end
