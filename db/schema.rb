@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2022_08_22_075352) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.integer "total_qty"
+    t.string "total_qty"
     t.index ["user_id"], name: "index_inventories_on_user_id"
   end
 
