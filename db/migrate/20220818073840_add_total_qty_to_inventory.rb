@@ -2,6 +2,6 @@
 
 class AddTotalQtyToInventory < ActiveRecord::Migration[5.2]
   def change
-    add_column :inventories, :total_qty, :string
+    add_column :inventories, :total_qty, :string ,null: true
   end
 end

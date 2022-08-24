@@ -3,8 +3,8 @@
 class CreateTradeRequests < ActiveRecord::Migration[5.2]
   def change
     create_table :trade_requests do |t|
-      t.bigint :coming_request_id, foreign_key: true
-      t.bigint :current_reciever_id, foreign_key: true
+      t.bigint :coming_request_id, foreign_key: true, index: true
+      t.bigint :current_reciever_id, foreign_key: true, index: true
 
       t.timestamps
     end

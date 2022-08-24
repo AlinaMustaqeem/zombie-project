@@ -8,8 +8,7 @@ class TradesController < ApplicationController
 
   def tradePage
     if TradeService.new(params).equal_points
-      Trade.create!(trade_params.merge(sending_user_id: current_user.id, recieving_user_id: @user.id,
-                                       request_status: :pending))
+      Trade.create!(trade_params.merge(sending_user_id: current_user.id, recieving_user_id: @user.id, request_status: :pending))
       flash[:success] = 'Trade Created successfully'
     else
       flash[:success] = 'Points Are not equal yet.. Can not Trade'
@@ -26,7 +25,7 @@ class TradesController < ApplicationController
 
   def destroy
     @trade.destroy
-    redirect_to user_path(current_user)
+    redirect_to user_path(current_user),notice: 'Rejected Request'
   end
 
   private
@@ -40,7 +39,6 @@ class TradesController < ApplicationController
   end
 
   def trade_params
-    params.permit(:sending_user_id, :recieving_user_id, :waterc, :watere, :soupc, :soupe, :pouchc, :pouche, :ak47e,
-                  :ak47c)
+    params.permit(:waterc, :watere, :soupc, :soupe, :pouchc, :pouche, :ak47e,:ak47c)
   end
 end

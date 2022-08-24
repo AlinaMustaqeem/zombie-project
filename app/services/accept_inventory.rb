@@ -10,31 +10,31 @@ class AcceptInventory
   end
 
   def current_add_points
-    @cwatera = (@inventory.water + (@trade.waterc.to_i * 14))
-    @csoupa = (@inventory.soup + (@trade.soupc.to_i * 12))
-    @cpoucha = (@inventory.pouch + (@trade.pouchc.to_i * 10))
-    @cak47a =  (@inventory.Ak47 + (@trade.ak47c.to_i * 8))
+    @cwatera = (@inventory.water + (@trade.waterc.to_i * WATER_POINTS))
+    @csoupa = (@inventory.soup + (@trade.soupc.to_i * SOUP_POINTS))
+    @cpoucha = (@inventory.pouch + (@trade.pouchc.to_i * POUCH_POINTS))
+    @cak47a =  (@inventory.Ak47 + (@trade.ak47c.to_i * AK47_POINTS))
   end
 
   def exchange_sub_points
-    @ewaters = (@inventory.water - (@trade.watere.to_i * 14))
-    @esoups = (@inventory.soup - (@trade.soupe.to_i * 12))
-    @epouchs = (@inventory.pouch - (@trade.pouche.to_i * 10))
-    @ek47s = (@inventory.Ak47 - (@trade.ak47e.to_i * 8))
+    @ewaters = (@inventory.water - (@trade.watere.to_i * WATER_POINTS))
+    @esoups = (@inventory.soup - (@trade.soupe.to_i * SOUP_POINTS))
+    @epouchs = (@inventory.pouch - (@trade.pouche.to_i * POUCH_POINTS))
+    @ek47s = (@inventory.Ak47 - (@trade.ak47e.to_i * AK47_POINTS))
   end
 
   def exchange_add_points
-    @ewatera = (@inventory.water + (@trade.watere.to_i * 14))
-    @esoupa = (@inventory.soup + (@trade.soupe.to_i * 12))
-    @epoucha = (@inventory.pouch + (@trade.pouche.to_i * 10))
-    @eak47a =  (@inventory.Ak47 + (@trade.ak47e.to_i * 8))
+    @ewatera = (@inventory2.water + (@trade.watere.to_i * WATER_POINTS))
+    @esoupa = (@inventory2.soup + (@trade.soupe.to_i * SOUP_POINTS))
+    @epoucha = (@inventory2.pouch + (@trade.pouche.to_i * POUCH_POINTS))
+    @eak47a =  (@inventory2.Ak47 + (@trade.ak47e.to_i * AK47_POINTS))
   end
 
   def current_sub_points
-    @cwaters = (@inventory.water - (@trade.waterc.to_i * 14))
-    @csoups = (@inventory.soup - (@trade.soupc.to_i * 12))
-    @cpouchs = (@inventory.pouch - (@trade.pouchc.to_i * 10))
-    @cak47s = (@inventory.Ak47 - (@trade.ak47c.to_i * 8))
+    @cwaters = (@inventory2.water - (@trade.waterc.to_i * WATER_POINTS))
+    @csoups = (@inventory2.soup - (@trade.soupc.to_i * SOUP_POINTS))
+    @cpouchs = (@inventory2.pouch - (@trade.pouchc.to_i * POUCH_POINTS))
+    @cak47s = (@inventory2.Ak47 - (@trade.ak47c.to_i * AK47_POINTS))
   end
 
   def updating
@@ -46,5 +46,8 @@ class AcceptInventory
     @inventory2.update(water: @ewatera, soup: @esoupa, pouch: @epoucha, Ak47: @eak47a)
     current_sub_points
     @inventory2.update(water: @cwaters, soup: @csoups, pouch: @cpouchs, Ak47: @cak47s)
+
+    @inventory2.update(total_qty:(@inventory2.water / WATER_POINTS + @inventory2.soup / SOUP_POINTS + @inventory2.pouch / POUCH_POINTS + @inventory2.Ak47 / AK47_POINTS) )
+    @inventory.update(total_qty:(@inventory.water / WATER_POINTS + @inventory.soup / SOUP_POINTS + @inventory.pouch / POUCH_POINTS + @inventory.Ak47 / AK47_POINTS) )
   end
 end

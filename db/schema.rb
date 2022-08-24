@@ -1,18 +1,5 @@
-# This file is auto-generated from the current state of the database. Instead
-# of editing this file, please use the migrations feature of Active Record to
-# incrementally modify your database, and then regenerate this schema definition.
-#
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
-#
-# It's strongly recommended that you check this file into your version control system.
+ActiveRecord::Schema.define(version: 2022_08_24_112253) do
 
-ActiveRecord::Schema.define(version: 2022_08_22_075352) do
-
-  # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -61,6 +48,8 @@ ActiveRecord::Schema.define(version: 2022_08_22_075352) do
     t.bigint "current_reciever_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["coming_request_id"], name: "index_trade_requests_on_coming_request_id"
+    t.index ["current_reciever_id"], name: "index_trade_requests_on_current_reciever_id"
   end
 
   create_table "trades", force: :cascade do |t|
@@ -77,6 +66,8 @@ ActiveRecord::Schema.define(version: 2022_08_22_075352) do
     t.integer "ak47c"
     t.integer "ak47e"
     t.integer "request_status", default: 0
+    t.index ["recieving_user_id"], name: "index_trades_on_recieving_user_id"
+    t.index ["sending_user_id"], name: "index_trades_on_sending_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -87,13 +78,13 @@ ActiveRecord::Schema.define(version: 2022_08_22_075352) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "age"
-    t.string "name"
-    t.string "gender", limit: 1
-    t.integer "longitude"
-    t.integer "latitude"
     t.integer "status", default: 0
     t.integer "user_type", default: 0
+    t.integer "age", null: false
+    t.string "name", null: false
+    t.string "gender", limit: 1, default: "M"
+    t.integer "longitude", null: false
+    t.integer "latitude", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -103,6 +94,8 @@ ActiveRecord::Schema.define(version: 2022_08_22_075352) do
     t.bigint "vote_reciever_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["vote_reciever_id"], name: "index_votes_on_vote_reciever_id"
+    t.index ["vote_sent_id"], name: "index_votes_on_vote_sent_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

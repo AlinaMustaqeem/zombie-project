@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class InventoriesController < ApplicationController
   def index; end
 
@@ -9,7 +8,7 @@ class InventoriesController < ApplicationController
 
   def create
     @inventory = Inventory.create(inventory_params)
-    @inventory.total_qty = (@inventory.water / 14 + @inventory.soup / 12 + @inventory.pouch / 10 + @inventory.Ak47 / 8)
+    @inventory.total_qty = (@inventory.water / WATER_POINTS + @inventory.soup / SOUP_POINTS + @inventory.pouch / POUCH_POINTS + @inventory.Ak47 / AK47_POINTS)
     if @inventory.save
       redirect_to user_path(current_user.id), notice: 'saved succesfuly'
     else

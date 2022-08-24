@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user, notice: 'Updated Sucessfully'
     else
-      render 'edit'
+      render 'edit' , notice: 'can not be Updated'
     end
   end
 
