@@ -2,24 +2,25 @@
 
 <%= form_with(model: [@inventory], local: true) do |f| %>
   <%= f.label :water %>
-  <%= f.number_field :water %>
+  <%= f.number_field :water , step: 1 , min:1, :required => true %>
 
   <br>
   <br>
 
   <%= f.label :soup %>
-  <%= f.number_field :soup %>
+  <%= f.number_field :soup , step: 1 , min:1, :required => true %>
+
 
   <br>
   <br>
 
   <%= f.label :pouch %>
-  <%= f.number_field :pouch %>
+  <%= f.number_field :pouch , step: 1 , min:1, :required => true %>
 
   <br>
   <br>
   <%= f.label :Ak47 %>
-  <%= f.number_field :Ak47 %>
+  <%= f.number_field :Ak47 , step: 1 , min:1, :required => true%>
   <br>
   <br>
   <%= f.submit %>

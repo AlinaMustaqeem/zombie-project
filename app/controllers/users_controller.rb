@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update vote]
   before_action :authorize_action, only: %i[show edit update vote home report]
@@ -39,7 +40,6 @@ class UsersController < ApplicationController
     @all_users = @r.result
     @admin_user = @all_users.where(user_type: :admin)
     @users = @all_users - @admin_user
-
   end
 
   def report

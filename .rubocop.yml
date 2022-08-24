@@ -2,7 +2,6 @@ require:
   - rubocop-performance
   - rubocop-rails
 AllCops:
-  # Exclude auto-generated files by Rails
   TargetRubyVersion: 2.7
   TargetRailsVersion: 5.2
   Exclude:
@@ -10,7 +9,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'vendor/bundle/**/*'
     - 'bin/**/*'
-    -  config/**/*
+    - 'config/**/*'
 Layout/LineLength:
   Max: 120
 Metrics/MethodLength:
