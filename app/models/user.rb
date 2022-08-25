@@ -29,6 +29,8 @@ class User < ApplicationRecord
 
   validates :latitude, inclusion: { in: -90..90, message: 'Should be -90 to +90 (degrees)' }, presence: true
 
+  validate :correct_image_type
+
   has_one_attached :image
 
   enum status: {
@@ -40,4 +42,12 @@ class User < ApplicationRecord
     user: 0,
     admin: 1
   }
+
+  def correct_image_type
+    if image.attached? && !image.content_type.in?(%w[image/jpeg image/png image/jpg])
+      errors.add(:image, ' must be jpeg and png')
+    elsif image.attached? == false
+      errors.add(:image, 'must have an image attached')
+    end
+  end
 end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class InventoriesController < ApplicationController
+  before_action :authorize_action, only: %i[new create index ]
   def index; end
 
   def new
@@ -20,5 +21,9 @@ class InventoriesController < ApplicationController
 
   def inventory_params
     params.require(:inventory).permit(:water, :soup, :pouch, :Ak47, :total_qty).merge(user_id: current_user.id)
+  end
+
+  def authorize_action
+    authorize Inventory
   end
 end

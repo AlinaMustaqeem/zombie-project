@@ -24,4 +24,8 @@ class UserPolicy < ApplicationPolicy
   def home?
     @user.user?
   end
+
+  def requests?
+    @user.user?
+  end
 end

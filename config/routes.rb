@@ -12,13 +12,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :inventories do
+  resources :inventories , only: %i[index new create] do
     member do
       post 'accept'
     end
   end
 
-  resources :trades do
+  resources :trades , only: %i[show index destroy new] do
     member do
       post 'tradePage'
       post 'trading_request'
@@ -26,7 +26,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users do
+
+  resources :users , only: %i[show edit index update]do
     collection do
       get 'home'
       get 'report'
@@ -36,4 +37,5 @@ Rails.application.routes.draw do
       post 'vote'
     end
   end
+  get '/*path', to: 'users#index'
 end

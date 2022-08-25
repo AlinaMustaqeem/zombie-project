@@ -3,7 +3,7 @@
 class TradesController < ApplicationController
   before_action :set_user, only: %i[tradePage show accept_request destroy]
   before_action :set_trade, only: %i[accept_request destroy]
-
+  before_action :authorize_action, only: %i[tradePage accept_request index show destroy]
   def new; end
 
   def tradePage
@@ -41,5 +41,9 @@ class TradesController < ApplicationController
 
   def trade_params
     params.permit(:waterc, :watere, :soupc, :soupe, :pouchc, :pouche, :ak47e,:ak47c)
+  end
+
+  def authorize_action
+    authorize Trade
   end
 end

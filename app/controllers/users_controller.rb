@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update vote]
-  before_action :authorize_action, only: %i[show edit update vote home report]
+  before_action :authorize_action, only: %i[show edit update vote home report requests]
 
   def show
     @user.Infected! if (Vote.where(vote_reciever_id: @user.id).count) >= 5
@@ -18,15 +18,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def requests; end
+
   def index
     if !user_signed_in?
       redirect_to new_user_registration_path, alert: 'Please Sign-in'
     elsif current_user.user_type == 'user' && current_user.inventory.nil?
-      redirect_to new_inventory_path
+      redirect_to new_inventory_path , notice: 'Register Your Inventory'
     elsif current_user.user_type == 'admin'
-      redirect_to report_users_path
+      redirect_to report_users_path, notice: 'Admin Pannel'
     else
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user), notice: 'Welcome to App'
     end
   end
 

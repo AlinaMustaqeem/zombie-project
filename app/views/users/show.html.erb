@@ -4,7 +4,7 @@
       <h1><%=@user.name%></h1>
       <br>
       <div class='msm-img'>
-        <%= image_tag(@user.image,class:'w') if @user.image.attached?%>
+        <%= cl_image_tag(@user.image.key, class: 'w', :cloud_name => Rails.application.credentials[Rails.env.to_sym][:cloud_name]) if @user.image.attached?%>
       </div>
       <br>
     </p>

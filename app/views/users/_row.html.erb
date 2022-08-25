@@ -2,7 +2,7 @@
 <td><%= user.age%></td>
 <td>
   <div style="width:50px;height:auto">
-    <%= image_tag(user.image,style:'width:100%') if user.image.attached?%>
+    <%= cl_image_tag(user.image.key ,style:'width:100%') if user.image.attached?%>
   </div>
 </td>
 <%if current_user.user?%>

@@ -30,19 +30,19 @@ module UsersHelper
   end
 
   def water_sum
-    (Inventory.pluck(:water).inject(0) { |sum, i| sum + i }) / 14
+    (Inventory.pluck(:water).inject(0) { |sum, i| sum + i }) / WATER_POINTS
   end
 
   def soup_sum
-    (Inventory.pluck(:soup).inject(0) { |sum, i| sum + i }) / 12
+    (Inventory.pluck(:soup).inject(0) { |sum, i| sum + i }) / SOUP_POINTS
   end
 
   def pouch_sum
-    (Inventory.pluck(:pouch).inject(0) { |sum, i| sum + i }) / 10
+    (Inventory.pluck(:pouch).inject(0) { |sum, i| sum + i }) / POUCH_POINTS
   end
 
   def ak47_sum
-    (Inventory.pluck(:Ak47).inject(0) { |sum, i| sum + i }) / 8
+    (Inventory.pluck(:Ak47).inject(0) { |sum, i| sum + i }) / AK47_POINTS
   end
 
   def average_water
