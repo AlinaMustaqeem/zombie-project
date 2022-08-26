@@ -39,15 +39,25 @@ class AcceptInventory
 
   def updating
     current_add_points
-    @inventory.update(water: @cwatera, soup: @csoupa, pouch: @cpoucha, Ak47: @cak47a)
     exchange_sub_points
-    @inventory.update(water: @ewaters, soup: @esoups, pouch: @epouchs, Ak47: @ek47s)
     exchange_add_points
-    @inventory2.update(water: @ewatera, soup: @esoupa, pouch: @epoucha, Ak47: @eak47a)
     current_sub_points
-    @inventory2.update(water: @cwaters, soup: @csoups, pouch: @cpouchs, Ak47: @cak47s)
+    ActiveRecord::Base.transaction do
 
-    @inventory2.update(total_qty:(@inventory2.water / WATER_POINTS + @inventory2.soup / SOUP_POINTS + @inventory2.pouch / POUCH_POINTS + @inventory2.Ak47 / AK47_POINTS) )
-    @inventory.update(total_qty:(@inventory.water / WATER_POINTS + @inventory.soup / SOUP_POINTS + @inventory.pouch / POUCH_POINTS + @inventory.Ak47 / AK47_POINTS) )
+      @inventory.update(water: @cwatera, soup: @csoupa, pouch: @cpoucha, Ak47: @cak47a)
+
+      @inventory.update(water: @ewaters, soup: @esoups, pouch: @epouchs, Ak47: @ek47s)
+
+      @inventory2.update(water: @ewatera, soup: @esoupa, pouch: @epoucha, Ak47: @eak47a)
+
+      @inventory2.update(water: @cwaters, soup: @csoups, pouch: @cpouchs, Ak47: @cak47s)
+
+      @inventory2.update(total_qty:(@inventory2.water / WATER_POINTS + @inventory2.soup / SOUP_POINTS + @inventory2.pouch / POUCH_POINTS + @inventory2.Ak47 / AK47_POINTS) )
+
+      @inventory.update(total_qty:(@inventory.water / WATER_POINTS + @inventory.soup / SOUP_POINTS + @inventory.pouch / POUCH_POINTS + @inventory.Ak47 / AK47_POINTS) )
+    end
+  rescue ActiveRecord::RecordInvalid
+    puts "Oops. We tried to do an invalid operation!"
   end
+
 end

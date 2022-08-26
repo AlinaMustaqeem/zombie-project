@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :votes , only: %i[create new]
+
   resources :trades , only: %i[show index destroy new] do
     member do
       post 'tradePage'
@@ -33,9 +35,9 @@ Rails.application.routes.draw do
       get 'report'
       get 'requests'
     end
-    member do
-      post 'vote'
-    end
+    # member do
+    #   post 'vote'
+    # end
   end
   get '/*path', to: 'users#index'
 end

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class TradesController < ApplicationController
-  before_action :set_user, only: %i[tradePage show accept_request destroy]
-  before_action :set_trade, only: %i[accept_request destroy]
-  before_action :authorize_action, only: %i[tradePage accept_request index show destroy]
+  before_action :set_user, only: %i[new create tradePage show accept_request destroy]
+  before_action :set_trade, only: %i[new create accept_request destroy]
+  before_action :authorize_action, only: %i[new create tradePage accept_request index show destroy]
   def new; end
 
   def tradePage
@@ -14,6 +14,10 @@ class TradesController < ApplicationController
       flash[:success] = 'Points Are not equal yet.. Can not Trade'
     end
   end
+
+  def create
+  end
+
 
   def accept_request
     AcceptInventory.new(@user.id, current_user.id, @trade).updating

@@ -28,7 +28,7 @@
       <%if not_voted?(@user) %>
         <br>
         <div class="d-grid gap-2 col-6 mx-auto">
-          <%= link_to "Vote",vote_user_path(@user) , method: :post, class:"btn btn-danger" %>
+          <%= link_to "Vote", votes_path(:user => @user.id) , method: :post, class:"btn btn-danger" %>
         </div>
       <%end%>
     <% end %>

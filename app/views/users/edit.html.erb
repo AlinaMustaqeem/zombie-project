@@ -12,7 +12,7 @@
     </p>
     <p>
       <%= form.label :image %><br>
-      <%= form.file_field :image, direct_upload: true %>
+      <%= form.file_field :image, direct_upload: true , accept:"image/png, image/gif, image/jpeg"%>
     </p>
     <p>
       <%= form.submit %>

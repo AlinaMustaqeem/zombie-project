@@ -8,15 +8,13 @@ class InventoriesController < ApplicationController
   end
 
   def create
-    @inventory = Inventory.create(inventory_params)
-    @inventory.total_qty = (@inventory.water / WATER_POINTS + @inventory.soup / SOUP_POINTS + @inventory.pouch / POUCH_POINTS + @inventory.Ak47 / AK47_POINTS)
+    @inventory = Inventory.new(inventory_params)
     if @inventory.save
       redirect_to user_path(current_user.id), notice: 'saved succesfuly'
     else
       render 'new', alert: 'Please Enter Inventory'
     end
   end
-
   private
 
   def inventory_params
@@ -26,4 +24,5 @@ class InventoriesController < ApplicationController
   def authorize_action
     authorize Inventory
   end
+
 end

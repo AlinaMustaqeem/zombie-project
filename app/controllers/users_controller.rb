@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update vote]
-  before_action :authorize_action, only: %i[show edit update vote home report requests]
+  before_action :set_user, only: %i[show edit update]
+  before_action :authorize_action, only: %i[show edit update home report requests]
 
   def show
-    @user.Infected! if (Vote.where(vote_reciever_id: @user.id).count) >= 5
+    @user.Infected! if Vote.votes_count(@user) >= 5
   end
 
   def edit; end
@@ -32,22 +32,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def vote
-    Vote.create(vote_sent_id: current_user.id, vote_reciever_id: @user.id)
-    redirect_to user_path(@user), notice: 'Voted'
-  end
-
   def home
     @r = User.ransack(params[:q])
-    @all_users = @r.result
-    @admin_user = @all_users.where(user_type: :admin)
-    @users = @all_users - @admin_user
+    @users = @r.result.where(user_type: :user)
   end
 
   def report
-    @all_users = User.all
-    @admin_user = User.where(user_type: :admin)
-    @users = @all_users - @admin_user
+    @users = User.where(user_type: :user)
   end
 
   private

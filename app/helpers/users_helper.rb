@@ -18,15 +18,15 @@ module UsersHelper
   end
 
   def not_infected_count
-    User.where(status: 'Not_Infected').count - 1
+    User.where(status: :Not_Infected, user_type: :user).count
   end
 
   def infected_count
-    User.where(status: 'Infected').count
+    User.where(status: :Infected).count
   end
 
   def total_users
-    User.all.count - 1
+    User.where(user_type: :user).count
   end
 
   def water_sum
