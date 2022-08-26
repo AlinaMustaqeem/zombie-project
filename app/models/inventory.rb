@@ -2,6 +2,11 @@
 class Inventory < ApplicationRecord
   belongs_to :user
 
+  validates :water, numericality: true, presence: true
+  validates :pouch, numericality: true, presence: true
+  validates :Ak47, numericality: true, presence: true
+  validates :soup, numericality: true, presence: true
+
   before_create do
     self.water = water.to_i * WATER_POINTS
     self.soup = soup.to_i * SOUP_POINTS

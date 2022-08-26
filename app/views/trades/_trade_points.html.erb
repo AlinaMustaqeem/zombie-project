@@ -1,5 +1,4 @@
-<%= form_with(url:tradePage_trade_path , local: true) do |f| %>
-
+<%= form_with(model: @trade , local: true) do |f| %>
   <div class = 'row'>
     <div class = 'col'>
       <%= f.label :waterc %>
@@ -44,6 +43,11 @@
     <div class = 'col'>
       <%= f.label :ak47e %>
       <%= f.number_field :ak47e , step: 1 , min:0%>
+    </div>
+  </div>
+  <div class = 'row'>
+    <div class = 'col'>
+      <%=  f.hidden_field :user, value: @user.id%>
     </div>
   </div>
   <br>

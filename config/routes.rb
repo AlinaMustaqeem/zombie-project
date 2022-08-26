@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :votes , only: %i[create new]
 
-  resources :trades , only: %i[show index destroy new] do
+  resources :trades , only: %i[show create index destroy new] do
     member do
       post 'tradePage'
       post 'trading_request'
