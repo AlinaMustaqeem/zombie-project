@@ -11,7 +11,8 @@
     </tr>
     <% current_user.sending_user.each do |user|%>
       <%user.sending_user_comparison.each do |trade|%>
-        <% if trade.pending? %>
+
+          <% if trade.pending? %>
           <tr>
             <td><%= user.name %></td>
             <td><%= link_to 'accept', accept_request_trade_path(user.id),method: :post, class:'btn btn-success' %></td>
@@ -25,8 +26,10 @@
   <div>
     <br />
     <%= link_to 'Back',user_path(current_user),class:"btn btn-secondary shadow" %>
-    <div class="d-grid gap-2 col-2 mx-auto">
-      <%= link_to 'Trade History',trade_path(current_user),class:"btn btn-dark" %>
-    </div>
-    <br>
-    <br>
+ <div class="d-grid gap-2 col-2 mx-auto">
+          <%= link_to 'Trade History',trade_path(current_user),class:"btn btn-dark" %>
+        </div>
+        <br>
+        <br>
+
+

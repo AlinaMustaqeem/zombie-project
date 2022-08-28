@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
-  before_action :authorize_action, only: %i[show edit update home report requests]
+  before_action :authorize_action, only: %i[show edit update report]
 
   def show
     @user.Infected! if Vote.votes_count(@user) >= 5
@@ -14,27 +14,19 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user, notice: 'Updated Sucessfully'
     else
-      render 'edit' , notice: 'can not be Updated'
+      render 'edit', notice: 'can not be Updated'
     end
   end
-
-  def requests; end
 
   def index
-    if !user_signed_in?
-      redirect_to new_user_registration_path, alert: 'Please Sign-in'
-    elsif current_user.user_type == 'user' && current_user.inventory.nil?
-      redirect_to new_inventory_path , notice: 'Register Your Inventory'
-    elsif current_user.user_type == 'admin'
+    if current_user.admin?
       redirect_to report_users_path, notice: 'Admin Pannel'
+    elsif current_user.user? && current_user.inventory.nil?
+      redirect_to new_inventory_path, notice: 'Register Your Inventory'
     else
-      redirect_to user_path(current_user), notice: 'Welcome to App'
+      @r = User.ransack(params[:q])
+      @users = @r.result.where(user_type: :user)
     end
-  end
-
-  def home
-    @r = User.ransack(params[:q])
-    @users = @r.result.where(user_type: :user)
   end
 
   def report

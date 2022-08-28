@@ -1,8 +1,8 @@
 # frozen_string_literal: true
-class InventoriesController < ApplicationController
-  before_action :authorize_action, only: %i[new create index ]
-  def index; end
 
+class InventoriesController < ApplicationController
+  before_action :authorize_action, only: %i[new create]
+  
   def new
     @inventory = Inventory.new
   end
@@ -15,6 +15,7 @@ class InventoriesController < ApplicationController
       render 'new', alert: 'Please Enter Inventory'
     end
   end
+
   private
 
   def inventory_params
@@ -24,5 +25,4 @@ class InventoriesController < ApplicationController
   def authorize_action
     authorize Inventory
   end
-
 end

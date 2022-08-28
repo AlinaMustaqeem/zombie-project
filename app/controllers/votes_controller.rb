@@ -1,5 +1,6 @@
-class VotesController < ApplicationController
+# frozen_string_literal: true
 
+class VotesController < ApplicationController
   before_action :set_user, only: %i[create]
 
   def create
@@ -13,9 +14,8 @@ class VotesController < ApplicationController
   end
 
   private
+
   def set_user
     @user = User.find(params[:user])
   end
-
 end
-

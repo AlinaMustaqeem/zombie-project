@@ -5,28 +5,28 @@
       <%= render "devise/shared/error_messages", resource: resource %>
       <div class="field text-white">
         <%= f.label :name %><br />
-        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name" , :required => true %>
       </div>
       <br>
       <div class="field text-white">
         <%= f.label :age %><br />
-        <%= f.number_field :age, autofocus: true, autocomplete: "age" %>
+        <%= f.number_field :age, autofocus: true, autocomplete: "age" , step: 1 , min:1, :required => true %>
       </div>
       <br>
       <div class="field text-white">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" , :required => true %>
       </div>
       <br>
       <div class="field text-white">
         <p>Last Location:</p>
-        longitude:<%= f.number_field :longitude, autofocus: true, autocomplete: "longitude" %>
-        latitude: <%=  f.number_field :latitude, autofocus: true, autocomplete: "latitude" %>
+        longitude:<%= f.number_field :longitude, autofocus: true, autocomplete: "longitude" , step: 1 , min:-90, max: 90,:required => true  %>
+        latitude: <%=  f.number_field :latitude, autofocus: true, autocomplete: "latitude" , step: 1 , min:-90, max: 90,:required => true %>
       </div>
       <br>
       <div class="field text-white">
         <%= f.label :image %><br>
-        <%= f.file_field :image, direct_upload: true , accept:"image/png, image/gif, image/jpeg"%>
+        <%= f.file_field :image, direct_upload: true , accept:"image/png, image/gif, image/jpeg" ,:required => true %>
       </div>
       <br>
       <div class="field text-white">
@@ -43,9 +43,9 @@
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> char min)</em>
         <% end %>
-        <%= f.password_field :password, autocomplete: "new-password" %>
+        <%= f.password_field :password, autocomplete: "new-password" ,:required => true %>
         <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" ,:required => true%>
       </div>
       <br>
       <div class="actions">
