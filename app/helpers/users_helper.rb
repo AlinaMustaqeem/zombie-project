@@ -6,7 +6,7 @@ module UsersHelper
   end
 
   def pending?
-    Trade.find_by(recieving_user_id: current_user.id).request_status == 'pending'
+    Trade.find_by!(recieving_user_id: current_user.id).request_status == 'pending'
   end
 
   def not_effected?(user)

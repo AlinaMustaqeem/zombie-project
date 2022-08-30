@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :votes , only: %i[create new]
 
-  resources :trades , only: %i[show create index destroy new] do
+  resources :trades , only: %i[show create destroy new] do
     member do
       post 'accept_request'
     end

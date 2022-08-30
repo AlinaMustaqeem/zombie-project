@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class InventoriesController < ApplicationController
-  before_action :authorize_action, only: %i[new create]
-  
+
   def new
     @inventory = Inventory.new
+    authorize @inventory
   end
 
   def create
@@ -23,6 +23,6 @@ class InventoriesController < ApplicationController
   end
 
   def authorize_action
-    authorize Inventory
+    authorize @user
   end
 end
