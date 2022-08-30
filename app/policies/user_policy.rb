@@ -21,7 +21,9 @@ class UserPolicy < ApplicationPolicy
     @user.user? && @current_user == @user
   end
 
-  def requests?
-    @current_user.user?
+  def update?
+    @user.user? && @current_user == @user
   end
+
+
 end

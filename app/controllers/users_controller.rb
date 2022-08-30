@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
-  before_action :authorize_action, only: %i[show edit update requests]
+  before_action :authorize_action, only: %i[show edit update]
 
   def show
     @user.Infected! if Vote.votes_count(@user) >= 5
