@@ -20,6 +20,12 @@ gem 'sass-rails', '~> 5.0'
 gem 'shutup'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'paperclip', '~> 5.0.0'
+gem 'active_storage_validations'
+gem 'activestorage-cloudinary-service'
+gem 'image_processing', '>= 1.2'
+
+
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -27,6 +33,13 @@ group :development, :test do
   gem 'rubocop-minitest'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
+  gem 'simplecov'
+  gem 'faker'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 4.1.0'
+  gem 'shoulda-matchers', '~> 4.0'
+  gem 'shoulda-callback-matchers', '~> 1.1.1'
+  gem 'factory_bot_rails'
 end
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -36,9 +49,9 @@ group :development do
 end
 group :test do
   gem 'capybara', '>= 2.15'
-  gem 'chromedriver-helper'
+  # gem 'chromedriver-helper'
   gem 'rubocop-rspec'
-  gem 'selenium-webdriver'
+  # gem 'selenium-webdriver'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
