@@ -914,6 +914,41 @@
           null
         ]
       },
+      "/home/dev/Training/Rails Project/Till_chutti/spec/models/trade_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/dev/Training/Rails Project/Till_chutti/app/models/trade.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/home/dev/Training/Rails Project/Till_chutti/spec/models/user_spec.rb": {
         "lines": [
           1,
@@ -979,27 +1014,8 @@
           1,
           null
         ]
-      },
-      "/home/dev/Training/Rails Project/Till_chutti/app/models/trade.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
       }
     },
-    "timestamp": 1661931962
+    "timestamp": 1661936507
   }
 }
