@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 2022_08_24_112253) do
     t.integer "Ak47", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.string "total_qty"
+    t.bigint "user_id", null: false
+    t.string "total_qty", null: false
     t.index ["user_id"], name: "index_inventories_on_user_id"
   end
 
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 2022_08_24_112253) do
   end
 
   create_table "trades", force: :cascade do |t|
-    t.bigint "sending_user_id"
-    t.bigint "recieving_user_id"
+    t.bigint "sending_user_id", null: false
+    t.bigint "recieving_user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "waterc"
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(version: 2022_08_24_112253) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.bigint "vote_sent_id"
-    t.bigint "vote_reciever_id"
+    t.bigint "vote_sent_id" , null: false
+    t.bigint "vote_reciever_id" , null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["vote_reciever_id"], name: "index_votes_on_vote_reciever_id"
