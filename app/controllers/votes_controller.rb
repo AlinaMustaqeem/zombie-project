@@ -14,8 +14,12 @@ class VotesController < ApplicationController
   end
 
   private
-
   def set_user
-    @user = User.find(params[:user])
+    begin
+      @user = User.find(params[:user])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to users_path, alert: "Record Does Not Exist"
+    end
+
   end
 end

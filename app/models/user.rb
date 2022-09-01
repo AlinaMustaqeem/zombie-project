@@ -7,29 +7,28 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :vote_sent_comparison, foreign_key: :vote_sent_id, class_name: 'Vote', dependent: :nullify
-  has_many :vote_reciever, through: :vote_sent_comparison, dependent: :nullify
+  has_many :vote_sent_comparison, foreign_key: :vote_sent_id, class_name: 'Vote', dependent: :destroy
+  has_many :vote_reciever, through: :vote_sent_comparison
 
   has_many :vote_reciever_comparison, foreign_key: :vote_reciever_id, class_name: 'Vote', dependent: :nullify
-  has_many :vote_sent, through: :vote_reciever_comparison, dependent: :nullify
+  has_many :vote_sent, through: :vote_reciever_comparison
 
   has_many :sending_user_comparison, foreign_key: :sending_user_id, class_name: 'Trade', dependent: :nullify
-  has_many :recieving_user, through: :sending_user_comparison, dependent: :nullify
+  has_many :recieving_user, through: :sending_user_comparison
 
   has_many :recieving_user_comparison, foreign_key: :recieving_user_id, class_name: 'Trade', dependent: :nullify
-  has_many :sending_user, through: :recieving_user_comparison, dependent: :nullify
+  has_many :sending_user, through: :recieving_user_comparison
 
   has_one :inventory, dependent: :destroy
 
   validates :name, format: { with: /\A[a-zA-Z]+\z/, message: 'Should contain letters Only' }, presence: true
 
-  validates :age, inclusion: { in: 18..90, message: 'Should be 18 to 90' }, presence: true
+  validates :age, inclusion: { in: 18..90 }, presence: true
 
-  validates :longitude, inclusion: { in: -180..180, message: 'Should be -180 to +180 (degrees)' }, presence: true
+  validates :longitude, inclusion: { in: -180..180 }, presence: true
 
-  validates :latitude, inclusion: { in: -90..90, message: 'Should be -90 to +90 (degrees)' }, presence: true
+  validates :latitude, inclusion: { in: -90..90 }, presence: true
 
-  validate :correct_image_type
 
   has_one_attached :image
 
@@ -42,12 +41,4 @@ class User < ApplicationRecord
     user: 0,
     admin: 1
   }
-
-  def correct_image_type
-    if image.attached? && !image.content_type.in?(%w[image/jpeg image/png image/jpg])
-      errors.add(:image, ' must be jpeg and png')
-    elsif image.attached? == false
-      errors.add(:image, 'must have an image attached')
-    end
-  end
 end

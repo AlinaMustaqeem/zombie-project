@@ -2,13 +2,11 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
-  before_action :authorize_action, only: %i[show edit update report]
+  before_action :authorize_action, only: %i[show edit update]
 
   def show
     @user.Infected! if Vote.votes_count(@user) >= 5
   end
-
-  def edit; end
 
   def update
     if @user.update(user_params)
@@ -17,6 +15,7 @@ class UsersController < ApplicationController
       render 'edit', notice: 'can not be Updated'
     end
   end
+
 
   def index
     if current_user.admin?
@@ -31,6 +30,7 @@ class UsersController < ApplicationController
 
   def report
     @users = User.where(user_type: :user)
+    authorize @users
   end
 
   private
@@ -40,10 +40,17 @@ class UsersController < ApplicationController
   end
 
   def authorize_action
-    authorize User
+    authorize @user
   end
 
   def set_user
-    @user = User.find(params[:id])
+    begin
+      @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to users_path, alert: 'Record Not Found'
+    rescue Exception
+      flash[:alert]= "Something is Missing"
+    end
+
   end
 end
