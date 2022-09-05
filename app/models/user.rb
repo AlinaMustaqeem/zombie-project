@@ -29,7 +29,6 @@ class User < ApplicationRecord
 
   validates :latitude, inclusion: { in: -90..90 }, presence: true
 
-
   has_one_attached :image
 
   enum status: {

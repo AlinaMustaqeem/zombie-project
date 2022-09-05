@@ -1,44 +1,78 @@
-# require 'rails_helper'
-# require 'spec_helper'
-# # require_relative '../support/devise'
-# RSpec.describe VotesController, type: :controller do
+require 'rails_helper'
+RSpec.describe VotesController, type: :controller do
 
-#  let!(:user1) { create(:user) }
-#  let!(:user2) { create(:user) }
-# #  let!(:vote1) { FactoryBot.create(:vote, vote_sent_id:user1.id, vote_reciever_id:user2.id)}
+ let(:user1) { create(:user) }
+ let(:user2) { create(:user) }
 
-#   before  do
-#   sign_in user1
-#   end
+  describe 'POST votes#create' do
+    before  do
+      sign_in user1
+   end
+    context 'create vote with valid record' do
+      before do
+        post :create , params:{ user: user2.id}
+      end
+      it 'should increase the vote count by 1' do
+        expect do
+          post :create , params:{ user: user2.id}
+        end.to change(Vote , :count).by(1)
+      end
+      it 'should display success' do
+        expect(flash[:success]).to eq('Voted')
+      end
+      it 'should go to show page ' do
+        expect(response).to redirect_to(user_path(user2))
+        expect(response.status).to eq 302
+      end
+    end
 
-#   describe 'Assigning vote instance' do
-#     context 'create vote with valid params' do
-#       before do
-#         post :create , params:{ user: user2.id}
-#       end
-#       it 'should create a vote' do
-#         expect do
-#           post :create , params:{ user: user2.id}
-#         end.to change(Vote , :count).by(1)
-#       end
-#       it 'should display alert' do
-#         expect(flash[:success]).to eq('Voted')
-#       end
-#       it 'should display alert' do
-#         expect(response).to redirect_to(user_path(user2))
-#       end
-#     end
-#   end
+    context 'create with invalid record' do
+      before do
+        post :create , params:{ user: nil}
+      end
+      it 'should go to index page' do
+        expect(response).to redirect_to(users_path)
+        expect(response.status).to eq 302
+      end
+      it 'should falsh alert' do
+        expect(flash[:alert]).to eq('Record Does Not Exist')
+      end
+    end
 
-#   context 'create vote with valid params' do
-#     before do
-#       post :create , params:{ user: nil}
-#     end
-#     it 'should display alert' do
-#       expect(response).to redirect_to(users_path)
-#     end
-#     it 'should display alert' do
-#       expect(flash[:alert]).to eq("Record Does Not Exist")
-#     end
-#   end
-# end
+    context 'when vote is not created' do
+      before do
+        allow(Vote).to receive(:new).and_return(@vote)
+        allow(@vote).to receive(:save).and_return(false)
+        post :create , params:{ user: user2.id}
+      end
+
+      it 'should not increment the vote count' do
+        expect do
+          post :create , params:{ user: user2.id}
+        end.to change(Vote , :count).by(0)
+      end
+
+      it 'should show that alert' do
+        expect(flash[:alert]).to eq('Try Again')
+      end
+    end
+  end
+
+  describe 'when user do not sign-in' do
+    context 'Creating Inventory' do
+      before do
+        post :create , params: {:user => user2.id}
+      end
+
+      it 'should not create a Vote' do
+        expect do
+          post :create , params: {:user => user2.id}
+        end.to change(Inventory , :count).by(0)
+      end
+
+      it 'should ask user to sign-in' do
+        expect(flash[:alert]).to eq("You need to sign in or sign up before continuing.")
+      end
+    end
+  end
+end
