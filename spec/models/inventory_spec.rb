@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 RSpec.describe Inventory, type: :model do
   describe 'association' do
     it {is_expected.to belong_to(:user)}
@@ -26,10 +25,10 @@ RSpec.describe Inventory, type: :model do
     end
   end
 
-  describe 'methods' do
+  describe 'method' do
     context 'when points updated' do
-      let!(:user1) {FactoryBot.create(:user)}
-      let!(:inventory) {FactoryBot.build(:inventory,user_id:user1.id)}
+      let!(:user1) {create(:user)}
+      let!(:inventory) {build(:inventory,user_id:user1.id)}
       let!(:water_value) {inventory.water}
       it 'check callback' do
         inventory.update_points

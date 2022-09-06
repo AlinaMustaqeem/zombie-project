@@ -9,6 +9,7 @@ class InventoriesController < ApplicationController
 
   def create
     @inventory = Inventory.new(inventory_params)
+    authorize @inventory
     if @inventory.save
       flash[:notice] = 'saved succesfuly'
       redirect_to user_path(current_user.id)

@@ -5,10 +5,10 @@ RSpec.describe VotesController, type: :controller do
  let(:user2) { create(:user) }
 
   describe 'POST votes#create' do
-    before  do
+    before 'must sign-in'  do
       sign_in user1
    end
-    context 'create vote with valid record' do
+    context 'When create vote with valid record' do
       before do
         post :create , params:{ user: user2.id}
       end
@@ -20,13 +20,14 @@ RSpec.describe VotesController, type: :controller do
       it 'should display success' do
         expect(flash[:success]).to eq('Voted')
       end
+      
       it 'should go to show page ' do
         expect(response).to redirect_to(user_path(user2))
         expect(response.status).to eq 302
       end
     end
 
-    context 'create with invalid record' do
+    context 'When create with invalid record' do
       before do
         post :create , params:{ user: nil}
       end
@@ -58,8 +59,8 @@ RSpec.describe VotesController, type: :controller do
     end
   end
 
-  describe 'when user do not sign-in' do
-    context 'Creating Inventory' do
+  describe 'Creating Vote' do
+    context 'when user do not sign-in ' do
       before do
         post :create , params: {:user => user2.id}
       end

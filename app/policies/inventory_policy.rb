@@ -10,4 +10,9 @@ class InventoryPolicy < ApplicationPolicy
     @current_user.user?
   end
 
+  def create?
+    @current_user.user?
+  end
+
+
 end

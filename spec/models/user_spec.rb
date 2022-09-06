@@ -1,6 +1,17 @@
 require 'rails_helper'
 RSpec.describe User, type: :model do
-  let(:user) { create(:user) }
+
+  describe 'Associations' do
+    it { should have_one(:inventory).dependent(:destroy) }
+    it { should have_many(:vote_reciever).through(:vote_sent_comparison) }
+    it { should have_many(:vote_sent_comparison).class_name(:Vote).with_foreign_key(:vote_sent_id) }
+    it { should have_many(:vote_sent).through(:vote_reciever_comparison) }
+    it { should have_many(:vote_reciever_comparison).class_name(:Vote).with_foreign_key(:vote_reciever_id) }
+    it { should have_many(:recieving_user).through(:sending_user_comparison) }
+    it { should have_many(:sending_user_comparison).class_name(:Trade).with_foreign_key(:sending_user_id) }
+    it { should have_many(:sending_user).through(:recieving_user_comparison) }
+    it { should have_many(:recieving_user_comparison).class_name(:Trade).with_foreign_key(:recieving_user_id) }
+  end
 
   describe 'validations' do
     context 'when name validations passed' do
@@ -28,24 +39,6 @@ RSpec.describe User, type: :model do
 
   describe 'enums' do
     it { should define_enum_for(:status).with_values(Not_Infected: 0, Infected: 1)}
-
     it { should define_enum_for(:user_type).with_values(user: 0, admin: 1)}
   end
-
-  describe 'Associations' do
-    it { should have_one(:inventory).dependent(:destroy) }
-
-    it { should have_many(:vote_reciever).through(:vote_sent_comparison) }
-    it { should have_many(:vote_sent_comparison).class_name(:Vote).with_foreign_key(:vote_sent_id) }
-
-    it { should have_many(:vote_sent).through(:vote_reciever_comparison) }
-    it { should have_many(:vote_reciever_comparison).class_name(:Vote).with_foreign_key(:vote_reciever_id) }
-
-    it { should have_many(:recieving_user).through(:sending_user_comparison) }
-    it { should have_many(:sending_user_comparison).class_name(:Trade).with_foreign_key(:sending_user_id) }
-
-    it { should have_many(:sending_user).through(:recieving_user_comparison) }
-    it { should have_many(:recieving_user_comparison).class_name(:Trade).with_foreign_key(:recieving_user_id) }
-  end
-
 end
