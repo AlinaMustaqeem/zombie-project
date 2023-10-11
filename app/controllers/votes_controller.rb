@@ -9,7 +9,7 @@ class VotesController < ApplicationController
       redirect_to user_path(@user)
       flash[:success] = 'Voted'
     else
-      flash[:Alert] = 'Try Again'
+      flash[:alert] = 'Try Again'
     end
   end
 

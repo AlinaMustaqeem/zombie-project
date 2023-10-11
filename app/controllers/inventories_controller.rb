@@ -9,10 +9,13 @@ class InventoriesController < ApplicationController
 
   def create
     @inventory = Inventory.new(inventory_params)
+    authorize @inventory
     if @inventory.save
-      redirect_to user_path(current_user.id), notice: 'saved succesfuly'
+      flash[:notice] = 'saved succesfuly'
+      redirect_to user_path(current_user.id)
     else
-      render 'new', alert: 'Please Enter Inventory'
+      flash[:alert] = 'Please Enter Inventory'
+      render 'new'
     end
   end
 
@@ -22,7 +25,4 @@ class InventoriesController < ApplicationController
     params.require(:inventory).permit(:water, :soup, :pouch, :Ak47, :total_qty).merge(user_id: current_user.id)
   end
 
-  def authorize_action
-    authorize @user
-  end
 end

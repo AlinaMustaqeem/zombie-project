@@ -56,6 +56,13 @@ ActiveRecord::Schema.define(version: 2022_08_24_112253) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "trade_requests", force: :cascade do |t|
+    t.bigint "coming_request_id"
+    t.bigint "current_reciever_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "trades", force: :cascade do |t|
     t.bigint "sending_user_id"
     t.bigint "recieving_user_id"
